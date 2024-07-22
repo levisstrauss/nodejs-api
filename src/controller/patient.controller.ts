@@ -5,6 +5,7 @@ import { QUERY } from "../query/patient.query";
 import { Code } from "../enum/code.enum";
 import { HttpResponse } from "../domain/response";
 import { Status } from "../enum/status.enum";
+// Justfor the type checking
 import { FieldPacket, OkPacket, OkPacketParams, ResultSetHeader, RowDataPacket } from "mysql2";
 
 type resultSet = [RowDataPacket[] | RowDataPacket[][] | OkPacket | OkPacket[] | ResultSetHeader, FieldPacket[]];
