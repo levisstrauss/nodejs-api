@@ -85,3 +85,24 @@ export const updatePatient = async (req: Request, rest: Response): Promise<Respo
             .send(new HttpResponse(Code.INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR, 'An error occurred'));
     }
 }
+
+// Delete the Patient
+export const deletePatient = async (req: Request, rest: Response): Promise<Response<Patient>> => {
+    console.info(`[${new Date().toLocaleString}] Incomming ${req.method} ${req.originalUrl} Request from ${req.rawHeaders[0]} ${req.rawHeaders[1]}`);
+    try{
+        const pool = await connection(); 
+        const result: resultSet = await pool.query(QUERY.SELECT_PATIENT, [req.params.patientId]);
+        if((result[0] as Array<resultSet>).length > 0){
+            const result: resultSet = await pool.query(QUERY.DELETE_PATIENT, [req.params.patientId]);
+            return rest.status(Code.OK)
+            .send(new HttpResponse(Code.OK, Status.OK, 'Patient deleted'));
+        }else{
+            return rest.status(Code.NOT_FOUND)
+            .send(new HttpResponse(Code.NOT_FOUND, Status.NOT_FOUND, 'Patient not found'));
+        }
+    }catch(error: unknown){
+        console.error(error);
+        return rest.status(Code.INTERNAL_SERVER_ERROR)
+            .send(new HttpResponse(Code.INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR, 'An error occurred'));
+    }
+}
