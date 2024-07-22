@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createPatient, deletePatient, getPatient, updatePatient } from '../controller/patient.controller';
+import { createPatient, deletePatient, getPatients, updatePatient, getPatient } from '../controller/patient.controller';
 
 const patientRoutes = Router();
 
@@ -8,7 +8,7 @@ const patientRoutes = Router();
 // Creating a new patient
 // This is basically /patient but because we already set this in app that is why we are only using /
 patientRoutes.route('/')
-        .get(getPatient)
+        .get(getPatients)
         .post(createPatient);
 
 // Get, update, delete one patient with an ID
