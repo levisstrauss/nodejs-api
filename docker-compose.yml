@@ -14,8 +14,8 @@ services:
     environment:
       MYSQL_DATABASE: patientsdb
       MYSQL_USER: admin
-      MYSQL_PASSWORD: letmein
-      MYSQL_ROOT_PASSWORD: letmein
+      MYSQL_PASSWORD: 
+      MYSQL_ROOT_PASSWORD:
       SERVICE_TAGS: prod
       SERVICE_NAME: mysqldb
     networks:
@@ -34,7 +34,7 @@ services:
     environment:
       DB_HOST: mysqldb
       DB_USER: admin
-      DB_PASSWORD: 'letmein'
+      DB_PASSWORD: ''
       DB_NAME: patientsdb
       DB_PORT: 3306
       DB_CONNECTION_LIMIT: 10
